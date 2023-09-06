@@ -16,6 +16,7 @@ import databaseConnection from '@config/database';
 import accessControl from '@middlewares/accessControl';
 import xssMiddleware from '@middlewares/xssMiddleware';
 import config from '@config/index';
+import adminRouter from '@routes/admin.routes';
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
@@ -39,11 +40,12 @@ let server = http.createServer(app);
 app.get('/test', (req: any, res: any) => {
   return res.json({ success: true, message: 'Server runs successfully' });
 });
+app.use('/api/admin', adminRouter);
 
 databaseConnection((isConnected: boolean) => {
   if (isConnected) {
     server.listen(config.PORT, () => {
-        console.log(`\x1b[33mServer runs in port ${config.PORT}...`)
+      console.log(`\x1b[33mServer runs in port ${config.PORT}...`);
     });
   }
 });

@@ -19,6 +19,7 @@ const database_1 = __importDefault(require("@config/database"));
 const accessControl_1 = __importDefault(require("@middlewares/accessControl"));
 const xssMiddleware_1 = __importDefault(require("@middlewares/xssMiddleware"));
 const index_1 = __importDefault(require("@config/index"));
+const admin_routes_1 = __importDefault(require("@routes/admin.routes"));
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 const app = (0, express_1.default)();
 app.use((0, morgan_1.default)('dev'));
@@ -36,6 +37,7 @@ let server = http_1.default.createServer(app);
 app.get('/test', (req, res) => {
     return res.json({ success: true, message: 'Server runs successfully' });
 });
+app.use('/api/admin', admin_routes_1.default);
 (0, database_1.default)((isConnected) => {
     if (isConnected) {
         server.listen(index_1.default.PORT, () => {
