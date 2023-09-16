@@ -28,6 +28,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const adminCtrl = __importStar(require("@controllers/admin.controller"));
+const adminValid = __importStar(require("@validations/admin.validation"));
+const authMiddleware_1 = __importDefault(require("@middlewares/authMiddleware"));
 const router = express_1.default.Router();
-router.route('/signin').post(adminCtrl.signin);
+router.route('/signin').post(adminValid.signin, adminCtrl.signin);
+router.route('/userinfo').get(authMiddleware_1.default, adminCtrl.getUserInfo);
 exports.default = router;

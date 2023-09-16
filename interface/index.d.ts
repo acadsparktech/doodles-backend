@@ -10,19 +10,56 @@ export interface ServerConfig {
   FILES: object;
 }
 
+export interface AdminUser {
+  _id: string;
+  email: string;
+  name: string;
+  password: string;
+  role: string;
+  restrictions: string[];
+  mailToken: string;
+  mailOtp: string;
+  otpTime: string;
+  createdAt: string;
+  updatedAt: string;
+  csrfToken: string;
+  csrfSecret: string;
+  status: string;
+}
+
+export interface JWTDecoder {
+  id: string;
+  csrfToken: string;
+  exp: string;
+}
+
 export interface RequestModified extends express.Request {
   user: {
+    _id: string;
     email: string;
     name: string;
     password: string;
     role: string;
+    restrictions: string[];
     mailToken: string;
     mailOtp: string;
+    otpTime: string;
     createdAt: string;
     updatedAt: string;
+    csrfToken: string;
+    csrfSecret: string;
+    status: string;
   };
 }
 
 export interface ModifiedMiddleware {
-  (req: express.Request, res: express.Response, next: express.NextFunction):void
+  (req: express.Request, res: express.Response, next: express.NextFunction): any;
+}
+
+export interface MiddlewareFunction {
+  (req: express.Request, res: express.Response, next: express.NextFunction): any;
+}
+
+export interface ControllerFunction {
+  (req: RequestModified, res: express.Response, next?: express.NextFunction): any;
 }

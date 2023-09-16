@@ -19,6 +19,10 @@ const AdminSchema = new mongoose.Schema(
       required: true,
       enum: ['admin', 'subadmin'],
     },
+    restriction: {
+      type: Array,
+      default: [],
+    },
     mailToken: {
       type: String,
       default: '',
@@ -27,10 +31,29 @@ const AdminSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    otpTime: {
+      type: Date,
+      default: Date.now(),
+    },
+    csrfToken: {
+      type: String,
+      default: '',
+    },
+    csrfSecret: {
+      type: String,
+      default: '',
+    },
+    status: {
+      type: String,
+      default: 'active',
+      enum: ['active', 'locked'],
+    },
   },
   {
     timestamps: true,
   },
 );
 
-export default mongoose.model('admin', AdminSchema, 'admin');
+const Admin = mongoose.model('admin', AdminSchema, 'admin');
+
+export default Admin;
