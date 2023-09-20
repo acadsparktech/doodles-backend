@@ -27,10 +27,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const adminCtrl = __importStar(require("@controllers/admin.controller"));
-const adminValid = __importStar(require("@validations/admin.validation"));
+// Middlewares
 const authMiddleware_1 = __importDefault(require("@middlewares/authMiddleware"));
+// Validations
+const adminValid = __importStar(require("@validations/admin.validation"));
+const studentValid = __importStar(require("@validations/student.validation"));
+// Controllers
+const adminCtrl = __importStar(require("@controllers/admin.controller"));
+const studentCtrl = __importStar(require("@controllers/student.controller"));
 const router = express_1.default.Router();
+// Auth Routes
 router.route('/signin').post(adminValid.signin, adminCtrl.signin);
 router.route('/userinfo').get(authMiddleware_1.default, adminCtrl.getUserInfo);
+// Student Routes
+router.route('/students').post(authMiddleware_1.default, studentValid.addStudent, studentCtrl.addStudent);
 exports.default = router;

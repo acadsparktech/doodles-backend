@@ -1,6 +1,6 @@
 import config from '@config/index';
 import { AdminUser, JWTDecoder, ModifiedMiddleware } from '@interface/index';
-import Admin from '@models/admin';
+import { Admin } from '@models/index';
 import isEmpty from 'is-empty';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 

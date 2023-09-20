@@ -1,6 +1,6 @@
 import express from 'express';
 import { ControllerFunction, RequestModified } from '@interface/index';
-import Admin from '@models/admin';
+import { Admin } from '@models/index';
 import validatePassword from '@utils/validatePassword';
 import { createCSRFToken } from '@utils/csrf';
 import jwt from 'jsonwebtoken';

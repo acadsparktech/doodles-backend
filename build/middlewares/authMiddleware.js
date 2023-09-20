@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = __importDefault(require("@config/index"));
-const admin_1 = __importDefault(require("@models/admin"));
+const index_2 = require("@models/index");
 const is_empty_1 = __importDefault(require("is-empty"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const authMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -27,7 +27,7 @@ const authMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
         }
         authToken = authToken.split(' ')[1].trim();
         let decodedJwt = jsonwebtoken_1.default.verify(authToken, index_1.default.JWT_SECRET, { algorithms: ['HS256'] });
-        let user = (yield admin_1.default.findById(decodedJwt.id).lean());
+        let user = (yield index_2.Admin.findById(decodedJwt.id).lean());
         if (user.status == 'locked') {
             return res.status(403).json({ success: false, message: 'Your account has been locked', state: 'UNAUTHORIZED' });
         }

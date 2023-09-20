@@ -13,15 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserInfo = exports.signin = void 0;
-const admin_1 = __importDefault(require("@models/admin"));
+const index_1 = require("@models/index");
 const validatePassword_1 = __importDefault(require("@utils/validatePassword"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const index_1 = __importDefault(require("@config/index"));
+const index_2 = __importDefault(require("@config/index"));
 const uuid_1 = require("uuid");
 const signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
-        let adminAccount = yield admin_1.default.findOne({ email });
+        let adminAccount = yield index_1.Admin.findOne({ email });
         if (!adminAccount) {
             return res.status(400).json({ success: false, message: 'Admin not found' });
         }
@@ -38,7 +38,7 @@ const signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             id: adminAccount._id.toString(),
             csrfToken: token,
             exp: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        }, index_1.default.JWT_SECRET);
+        }, index_2.default.JWT_SECRET);
         return res.status(201).json({ success: true, message: 'Signin successful', action: 'FETCH_ACCOUNT', token: `Bearer ${jwtToken}` });
     }
     catch (error) {
@@ -48,7 +48,7 @@ const signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.signin = signin;
 const getUserInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let user = yield admin_1.default.findById(req.user._id, { name: 1, role: 1, status: 1, email: 1 });
+        let user = yield index_1.Admin.findById(req.user._id, { name: 1, role: 1, status: 1, email: 1 });
         return res.json({ success: true, user });
     }
     catch (error) {
