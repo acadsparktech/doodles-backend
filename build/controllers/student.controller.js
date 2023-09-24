@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addStudent = void 0;
 const addStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const { rollNumber, password } = req.body;
     }
     catch (error) {
         console.log(error);

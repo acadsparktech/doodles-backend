@@ -1,0 +1,9 @@
+export const EMAIL = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+export const PASSWORD = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[~!@#$%^&*|\\/<>()+=\-_])[A-Za-z\d~!@#$%^&*|\\/<>()+=\-_]{8,32}$/;
+export const ISALNUMHYP = /^[A-Z0-9_-]+$/
+export const ISALNUM = /^[a-zA-Z0-9\s]+$/
+export const ZIPCODE = /^[0-9-]+$/
+export const NUMBER = /^-?\d*\.?\d+$/
+export const PHONE_NUM = /^(\+91|91)[1-9]\d{9}$/
+export const ADDRESS = /^[0-9a-zA-Z\s.,'-]+$/
+export const ALL_CAPS = /^[A-Z0-9]+$/

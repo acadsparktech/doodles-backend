@@ -1,3 +1,4 @@
+import { BLOOD_GROUP, GENDERS, PARENTING_TYPE, PHONE_TYPE } from '@constants/arrays';
 import mongoose from 'mongoose';
 
 const StudentSchema = new mongoose.Schema(
@@ -25,7 +26,7 @@ const StudentSchema = new mongoose.Schema(
     gender: {
       type: Number,
       required: true,
-      enum: ['male', 'female', 'non-binary'],
+      enum: GENDERS,
     },
     dateOfBirth: {
       type: Date,
@@ -37,12 +38,16 @@ const StudentSchema = new mongoose.Schema(
     },
     examNumber: {
       type: String,
-      required: true,
+      default: '',
+    },
+    emisNumber: {
+      type: String,
+      default: '',
     },
     parentingType: {
       type: String,
       required: true,
-      enum: ['parents', 'guardian', 'orphanage'],
+      enum: PARENTING_TYPE,
     },
     fatherName: {
       type: String,
@@ -63,12 +68,12 @@ const StudentSchema = new mongoose.Schema(
     phoneNumber1: {
       phone: {
         type: String,
-        default: '',
+        required: true,
       },
       type: {
         type: String,
-        default: '',
-        enum: ['other', 'mother', 'father', 'house', 'guardian', 'orphanage', 'office'],
+        required: true,
+        enum: PHONE_TYPE,
       },
     },
     phoneNumber2: {
@@ -79,7 +84,7 @@ const StudentSchema = new mongoose.Schema(
       type: {
         type: String,
         default: '',
-        enum: ['other', 'mother', 'father', 'house', 'guardian', 'orphanage', 'office'],
+        enum: PHONE_TYPE,
       },
     },
     address: {
@@ -98,10 +103,14 @@ const StudentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    nationality: {
+      type: String,
+      default: 'india',
+    },
     bloodGroup: {
       type: String,
       default: '',
-      enum: ['', 'O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'],
+      enum: BLOOD_GROUP,
     },
     totalFee: {
       type: Number,

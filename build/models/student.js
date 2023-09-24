@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const arrays_1 = require("@constants/arrays");
 const mongoose_1 = __importDefault(require("mongoose"));
 const StudentSchema = new mongoose_1.default.Schema({
     rollNumber: {
@@ -28,7 +29,7 @@ const StudentSchema = new mongoose_1.default.Schema({
     gender: {
         type: Number,
         required: true,
-        enum: ['male', 'female', 'non-binary'],
+        enum: arrays_1.GENDERS,
     },
     dateOfBirth: {
         type: Date,
@@ -40,12 +41,16 @@ const StudentSchema = new mongoose_1.default.Schema({
     },
     examNumber: {
         type: String,
-        required: true,
+        default: '',
+    },
+    emisNumber: {
+        type: String,
+        default: '',
     },
     parentingType: {
         type: String,
         required: true,
-        enum: ['parents', 'guardian', 'orphanage'],
+        enum: arrays_1.PARENTING_TYPE,
     },
     fatherName: {
         type: String,
@@ -66,12 +71,12 @@ const StudentSchema = new mongoose_1.default.Schema({
     phoneNumber1: {
         phone: {
             type: String,
-            default: '',
+            required: true,
         },
         type: {
             type: String,
-            default: '',
-            enum: ['other', 'mother', 'father', 'house', 'guardian', 'orphanage', 'office'],
+            required: true,
+            enum: arrays_1.PHONE_TYPE,
         },
     },
     phoneNumber2: {
@@ -82,7 +87,7 @@ const StudentSchema = new mongoose_1.default.Schema({
         type: {
             type: String,
             default: '',
-            enum: ['other', 'mother', 'father', 'house', 'guardian', 'orphanage', 'office'],
+            enum: arrays_1.PHONE_TYPE,
         },
     },
     address: {
@@ -101,10 +106,14 @@ const StudentSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
+    nationality: {
+        type: String,
+        default: 'india',
+    },
     bloodGroup: {
         type: String,
         default: '',
-        enum: ['', 'O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'],
+        enum: arrays_1.BLOOD_GROUP,
     },
     totalFee: {
         type: Number,
