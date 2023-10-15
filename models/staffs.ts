@@ -1,3 +1,4 @@
+import { BLOOD_GROUP, MARTIAL_STATUS, STAFF_TYPE } from '@constants/arrays';
 import mongoose from 'mongoose';
 
 const StaffSchema = new mongoose.Schema(
@@ -44,12 +45,13 @@ const StaffSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      default: ['teacher', 'office', 'management', 'principal', 'admin', 'correspondent'],
+      required: true,
+      enum: STAFF_TYPE,
     },
     bloodGroup: {
       type: String,
       default: '',
-      enum: ['', 'O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'],
+      enum: BLOOD_GROUP,
     },
     qualification: {
       type: String,
@@ -94,7 +96,11 @@ const StaffSchema = new mongoose.Schema(
     martialStatus: {
       type: String,
       default: '',
-      enum: ['married', 'single', 'widowed', 'divorced'],
+      enum: MARTIAL_STATUS,
+    },
+    isSupervisor: {
+      type: Boolean,
+      default: false,
     },
   },
   {

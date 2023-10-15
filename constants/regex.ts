@@ -4,6 +4,6 @@ export const ISALNUMHYP = /^[A-Z0-9_-]+$/
 export const ISALNUM = /^[a-zA-Z0-9\s]+$/
 export const ZIPCODE = /^[0-9-]+$/
 export const NUMBER = /^-?\d*\.?\d+$/
-export const PHONE_NUM = /^(\+91|91)[1-9]\d{9}$/
+export const PHONE_NUM = /^(?:\+91|0)?[789]\d{9}$|^\d{3,5}[-\s]\d{6,8}$/
 export const ADDRESS = /^[0-9a-zA-Z\s.,'-]+$/
 export const ALL_CAPS = /^[A-Z0-9]+$/

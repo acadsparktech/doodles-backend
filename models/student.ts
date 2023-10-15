@@ -83,7 +83,7 @@ const StudentSchema = new mongoose.Schema(
       },
       type: {
         type: String,
-        default: '',
+        default: 'other',
         enum: PHONE_TYPE,
       },
     },

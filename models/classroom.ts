@@ -1,3 +1,4 @@
+import { CLASS_CATEGORY, GRADE_TYPE } from '@constants/arrays';
 import mongoose from 'mongoose';
 
 const ClassroomSchema = new mongoose.Schema(
@@ -13,7 +14,7 @@ const ClassroomSchema = new mongoose.Schema(
     gradeType: {
       type: String,
       required: true,
-      enum: ['kindergarten', 'primary', 'secondary', 'senior', 'supersenior'],
+      enum: GRADE_TYPE,
     },
     section: {
       type: String,
@@ -26,7 +27,7 @@ const ClassroomSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ['normal', 'special', 'yoga', 'fitness', 'sports', 'science', 'swimming', 'musical', 'other'],
+      enum: CLASS_CATEGORY,
     },
     supervisor: {
       type: mongoose.Types.ObjectId,
